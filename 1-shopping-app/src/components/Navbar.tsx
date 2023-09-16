@@ -4,7 +4,7 @@ import { BsCart4 } from "react-icons/bs";
 import { ShoppingContext } from "../context/ShoppingCartContext";
 
 const Navbar = () => {
-  const { openCart, closeCart, cartQuantity } = useContext(ShoppingContext);
+  const { openCart, cartQuantity } = useContext(ShoppingContext);
   return (
     <header className=" shadow-md shadow-slate-300">
       <nav className="flex justify-between items-center   h-16 sticky max-container">
