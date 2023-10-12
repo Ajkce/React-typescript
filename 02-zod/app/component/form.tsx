@@ -20,7 +20,7 @@ const signUpSchema = z
     path: ["confirmPassword"],
   });
 
-type SignUpSchema = z.infer<typeof signUpSchema>;
+type TSignUpSchema = z.infer<typeof signUpSchema>;
 
 const Form = () => {
   const {
@@ -29,7 +29,7 @@ const Form = () => {
     formState: { isSubmitting, errors },
     reset,
     getValues,
-  } = useForm<SignUpSchema>({
+  } = useForm<TSignUpSchema>({
     resolver: zodResolver(signUpSchema),
   });
 
