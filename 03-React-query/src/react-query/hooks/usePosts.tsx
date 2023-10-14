@@ -10,27 +10,24 @@ interface Post {
 }
 
 interface PostQuery {
+  page: number;
   pageSize: number;
 }
 
 const usePosts = (query: PostQuery) =>
-  useInfiniteQuery<Post[], Error>({
+  useQuery<Post[], Error>({
     queryKey: ["posts", query],
-    queryFn: ({ pageParam }) =>
+    queryFn: () =>
       axios
         .get("https://jsonplaceholder.typicode.com/posts", {
           params: {
-            _start: (pageParam - 1) * query.pageSize,
+            _start: (query.page - 1) * query.pageSize,
             _limit: query.pageSize,
           },
         })
         .then((res) => res.data),
     staleTime: 1 * 60,
     keepPreviousData: true,
-    getNextPageParam: (lastPage, allPages) => {
-      //1 => 2
-      return lastPage.length > 0 ? allPages.length + 1 : undefined;
-    },
   });
 
 export default usePosts;

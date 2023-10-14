@@ -1,8 +1,8 @@
 import axios from "axios";
-import React from "react";
 import { useQuery } from "react-query";
+import { CACHE_KEY_TODOS } from "../constants";
 
-interface Todo {
+export interface Todo {
   id: number;
   title: string;
   userId: number;
@@ -16,7 +16,7 @@ const useTodos = () => {
       .then((res) => res.data);
   };
   return useQuery<Todo[], Error>({
-    queryKey: ["todos"],
+    queryKey: CACHE_KEY_TODOS,
     queryFn: fetchTodos,
   });
 };
